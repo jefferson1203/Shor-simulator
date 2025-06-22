@@ -1,0 +1,87 @@
+/* Importation d'une police moderne et lisible */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Thème général */
+body {
+    font-family: 'Inter', sans-serif;
+    color: #E0E0E0; /* Blanc cassé pour un look plus doux */
+}
+
+/* Conteneur principal de l'application */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+/* Barre latérale */
+[data-testid="stSidebar"] {
+    background-color: #0F172A; /* Bleu nuit très sombre */
+    border-right: 1px solid #1E293B;
+    color: #E2E8F0; /* Assure que tout le texte de la sidebar est clair */
+}
+
+/* Titres dans la barre latérale */
+/* Titres dans la barre latérale */
+[data-testid="stSidebar"] h1 {
+    color: #FFFFFF !important; /* Blanc pur pour une visibilité maximale */
+    font-size: 24px;
+}
+
+/* Cartes pour chaque section */
+.card {
+    background-color: #1E293B; /* Bleu nuit sombre */
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #334155; /* Bordure subtile */
+}
+
+/* Style des boutons */
+.stButton>button {
+    border-radius: 8px;
+    border: 1px solid #38BDF8; /* Bleu ciel */
+    background-color: #38BDF8; /* Fond bleu pour une meilleure visibilité */
+    color: #FFFFFF !important; /* Texte blanc pour un contraste élevé */
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 14px 0 rgba(56, 189, 248, 0.39); /* Ombre subtile */
+}
+
+.stButton>button:hover {
+    background-color: #7DD3FC; /* Bleu plus clair au survol */
+    color: #FFFFFF;
+    border-color: #7DD3FC;
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); /* Ombre plus prononcée */
+}
+
+.stButton>button:active {
+    background-color: #0EA5E9 !important;
+    color: #FFFFFF !important;
+    border-color: #0EA5E9 !important;
+}
+
+/* Style des expanders pour les explications */
+.st-emotion-cache-p5msec {
+    background-color: #293548; /* Gris-bleu plus sombre pour un meilleur contraste */
+    border-radius: 8px;
+    border: none;
+}
+
+/* Style des messages de succès */
+.stAlert[data-baseweb="alert"].st-emotion-cache-j6ncyo {
+    background-color: #10B981; /* Vert */
+}
+
+/* Règles pour forcer la visibilité du texte dans les zones problématiques */
+[data-testid="stSidebar"] p, [data-testid="stSidebar"] label {
+    color: #E2E8F0 !important; /* Gris clair pour la barre latérale */
+    font-family: 'Inter', sans-serif !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: #000000 !important; /* Noir pour le titre de l'expandeur */
+    font-family: 'Inter', sans-serif !important;
+}
