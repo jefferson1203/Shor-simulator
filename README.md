@@ -2,6 +2,8 @@
 
 ![Logo](utc/image.png)
 
+**[➡️ Accéder à l'application déployée](https://shor-simulator-tx7704-p25.streamlit.app/)**
+
 Projet réalisé dans le cadre de l'UV **Tx n°7708**, ce simulateur offre une exploration interactive et pédagogique de l'algorithme quantique de Shor pour la factorisation des nombres entiers. L'application est développée en Python avec la bibliothèque Streamlit.
 
 ## Table des matières
@@ -103,3 +105,4 @@ Sous la responsabilité de :
 
 Et la supervision de :
 -   **Vincent ROBIN**
+
