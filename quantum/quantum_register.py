@@ -9,22 +9,22 @@ class QuantumRegister:
         """
         self.num_qubits = num_qubits
         self.state = np.zeros(2**num_qubits, dtype=np.complex128)
-        self.state[0] = 1  # Start in |0> state
+        self.state[0] = 1  # Commence dans l'état |0>
         
     def apply_hadamard(self, qubit_index):
         """
         Applique la porte de Hadamard à un qubit spécifique.
         """
         if not (0 <= qubit_index < self.num_qubits):
-            raise ValueError(f"Qubit index {qubit_index} out of range")
+            raise ValueError(f"L'indice de qubit {qubit_index} est hors limites")
             
-        # Apply Hadamard gate using tensor product
+        # Appliquer la porte de Hadamard en utilisant le produit tensoriel
         h_matrix = np.array([[1, 1], [1, -1]]) / np.sqrt(2)
         
-        # Create identity matrices for other qubits
+        # Créer des matrices identité pour les autres qubits
         identity = np.eye(2)
         
-        # Construct the full operator
+        # Construire l'opérateur complet
         operator = np.eye(1)
         for i in range(self.num_qubits):
             if i == qubit_index:
@@ -32,7 +32,7 @@ class QuantumRegister:
             else:
                 operator = np.kron(operator, identity)
         
-        # Apply the operator
+        # Appliquer l'opérateur
         self.state = operator @ self.state
         
     def apply_hadamard_to_all(self):
@@ -71,7 +71,7 @@ class QuantumRegister:
             if pow(a, r, n) == 1:
                 return r
             r += 1
-            if r > n:  # Failsafe, r is always less than n
+            if r > n:  # Sécurité, r est toujours inférieur à n
                 return None
 
     def apply_oracle(self, a, n):
@@ -81,21 +81,21 @@ class QuantumRegister:
         du second registre, ce qui effondre le premier registre en une
         superposition d'états avec la période correcte.
         """
-        # 1. Classically find the period 'r'. This is the "cheat" that makes
-        # the simulation work without a full quantum modular exponentiation circuit.
+        # 1. Trouver classiquement la période 'r'. C'est la "triche" qui permet à
+        # la simulation de fonctionner sans un circuit complet d'exponentiation modulaire quantique.
         r = self._find_period_classically(a, n)
         if r is None:
-            print(f"Warning: Could not find period for a={a}, N={n}")
+            print(f"Avertissement : Impossible de trouver la période pour a={a}, N={n}")
             return
 
         Q = 2**self.num_qubits
 
-        # 2. Choose a random offset 'x0' to simulate the measurement of the
-        # second register collapsing to a random value f(x0).
+        # 2. Choisir un décalage aléatoire 'x0' pour simuler la mesure du
+        # second registre s'effondrant sur une valeur aléatoire f(x0).
         x0 = random.randint(0, r - 1)
 
-        # 3. Create a new state vector. The state collapses to a superposition
-        # of all |x> such that f(x) = f(x0). These are x = x0, x0+r, x0+2r, ...
+        # 3. Créer un nouveau vecteur d'état. L'état s'effondre en une superposition
+        # de tous les |x> tels que f(x) = f(x0). Ce sont x = x0, x0+r, x0+2r, ...
         new_state = np.zeros(Q, dtype=np.complex128)
         
         periodic_indices = []
@@ -109,17 +109,17 @@ class QuantumRegister:
                 break
         
         if not periodic_indices:
-            print(f"Warning: Q={Q} is too small to represent the period r={r}.")
+            print(f"Avertissement : Q={Q} est trop petit pour représenter la période r={r}.")
             return
 
-        # 4. Set the amplitudes for these states to be equal and normalize.
+        # 4. Définir les amplitudes de ces états pour qu'elles soient égales et normalisées.
         amplitude = 1.0 / np.sqrt(len(periodic_indices))
         for idx in periodic_indices:
             new_state[idx] = amplitude
             
-        # 5. Replace the register's state with this new periodic state.
-        # This bypasses the Hadamard transform result and directly
-        # creates the state that the QFT needs to find the period.
+        # 5. Remplacer l'état du registre par ce nouvel état périodique.
+        # Cela contourne le résultat de la transformée de Hadamard et crée directement
+        # l'état dont la TQF a besoin pour trouver la période.
         self.state = new_state
 
     def apply_iqft(self):
@@ -139,8 +139,8 @@ class QuantumRegister:
         """
         Retourne une représentation textuelle de l'état quantique.
         """
-        result = "Quantum State:\n"
+        result = "État Quantique :\n"
         for i in range(2**self.num_qubits):
-            if np.abs(self.state[i]) > 1e-10:  # Only show non-zero amplitudes
+            if np.abs(self.state[i]) > 1e-10:  # N'afficher que les amplitudes non nulles
                 result += f"|{i:0{self.num_qubits}b}>: {self.state[i]}\n"
         return result

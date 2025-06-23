@@ -28,7 +28,7 @@ class Preprocessor:
         """
         if self.n <= 1:
             self.is_valid = False
-            self.validation_steps.append(f"Number {self.n} is trivial (≤ 1)")
+            self.validation_steps.append(f"Le nombre {self.n} est trivial (≤ 1)")
             return False
         return True
         
@@ -38,7 +38,7 @@ class Preprocessor:
         """
         if self.n % 2 == 0 and self.n != 2:
             self.is_valid = False
-            self.validation_steps.append(f"Number {self.n} is even and not 2")
+            self.validation_steps.append(f"Le nombre {self.n} est pair et différent de 2")
             return False
         return True
         
@@ -48,7 +48,7 @@ class Preprocessor:
         """
         if isprime(self.n):
             self.is_valid = False
-            self.validation_steps.append(f"Number {self.n} is prime")
+            self.validation_steps.append(f"Le nombre {self.n} est premier")
             return False
         return True
         
@@ -60,7 +60,7 @@ class Preprocessor:
             a = round(self.n ** (1/b))
             if a ** b == self.n:
                 self.is_valid = False
-                self.validation_steps.append(f"Number {self.n} is a perfect power ({a}^{b})")
+                self.validation_steps.append(f"Le nombre {self.n} est une puissance parfaite ({a}^{b})")
                 return False
         return True
         

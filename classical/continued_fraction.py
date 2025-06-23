@@ -22,7 +22,7 @@ class ContinuedFraction:
             a = int(num)
             self.coefficients.append(a)
             # Si le nombre est un entier, on a terminé.
-            if abs(num - a) < 1e-9: # Comparaison de flottants sécurisée
+            if abs(num - a) < 1e-9:
                 break
             num = 1.0 / (num - a)
 
@@ -70,7 +70,6 @@ class ContinuedFractionConvergents:
             
             self.convergents.append((h_n, k_n))
             
-            # Mettre à jour les valeurs pour la prochaine itération
             h_minus_2, k_minus_2 = h_minus_1, k_minus_1
             h_minus_1, k_minus_1 = h_n, k_n
 

@@ -281,14 +281,14 @@ class ShorSimulator:
 
 # --- Exécution principale de l'application ---
 def main():
-    st.set_page_config(layout="wide", page_title="Shor's Algorithm Simulator", page_icon="image.png")
+    st.set_page_config(layout="wide", page_title="Simulateur d'Algorithme de Shor", page_icon="utc/image.png")
     load_css('style.css')
 
     if 'simulator' not in st.session_state:
         st.session_state.simulator = ShorSimulator()
     simulator = st.session_state.simulator
 
-    st.sidebar.title("Shor's Algorithm Simulator")
+    st.sidebar.title("Simulateur d'Algorithme de Shor")
     st.sidebar.markdown("---_Tx n°7708 Simulateur pour l'algorithme de Shor_---")
     
     new_n = st.sidebar.number_input("Nombre à factoriser (N)", min_value=15, max_value=100, value=simulator.n, step=2)
